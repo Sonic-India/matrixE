@@ -46,8 +46,12 @@ row2:
 
     }
     //row2
-    if(a[1][0]!=0){
-   for (i = 0; i < 2; i++) {
+    if(a[1][0]!=0)
+    {
+   for (i = 0; i < 1; i++)
+      {
+       if((b[i][0]>0 && b[i+1][0]>0)||(b[i][0]<0 && b[i+1][0]<0))
+       {
         for (j = 0; j < 3; j++)
          {
 
@@ -59,7 +63,66 @@ row2:
         }
 
     }
-}
+       else
+       {
+           for (j = 0; j < 3; j++)
+         {
+
+            a[i+1][j]=((b[i+1][j] * b[0][0]) + (b[0][j]*b[i+1][0]));
+            printf("\nDebug i&j a[%d][%d]= %d",i,j, a[i][j]);
+            debug(a);
+         //   printf(" %d", a[i][j]);
+         }
+       }
+     }
+    } for (i = 0; i < 3; i++) {
+        for (j = 0; j < 3; j++)
+         {
+            b[i][j]=a[i][j];
+
+        }
+
+    }
+
+debug(a);
+    if(a[2][0]!=0)
+    {
+   for (i = 0; i < 1; i++)
+      {
+       if((b[i][0]>0 && b[i+2][0]>0)||(b[i][0]<0 && b[i+2][0]<0))
+       {
+        for (j = 0; j < 3; j++)
+         {
+
+            a[i+2][j]=((b[i+2][j] * b[0][0]) - (b[0][j]*b[i+2][0]));
+            printf("\nDebug i&j a[%d][%d]= %d",i,j, a[i][j]);
+            debug(a);
+         //   printf(" %d", a[i][j]);
+
+        }
+
+    }
+       else
+       {
+           for (j = 0; j < 3; j++)
+         {
+
+            a[i+2][j]=((b[i+2][j] * b[0][0]) + (b[0][j]*b[i+2][0]));
+            printf("\nDebug i&j a[%d][%d]= %d",i,j, a[i][j]);
+            debug(a);
+         //   printf(" %d", a[i][j]);
+
+        }
+       }
+     }
+    } for (i = 0; i < 3; i++) {
+        for (j = 0; j < 3; j++)
+         {
+            b[i][j]=a[i][j];
+
+        }
+    }
+
 debug(a);
 row3:
 
@@ -70,22 +133,44 @@ row3:
             b[i][j]=a[i][j];
 
         }
-
     }
 
-    if(a[2][0]!=0 ||a[2][1]!=0)
+    if(a[2][1]!=0)
     {
-    for (i = 1; i < 2; i++) {
-        for (j = 1; j < 3; j++)
+    for (i = 1; i < 2; i++) 
+      {
+       if((b[i][1]>0 && b[i+1][1]>0)||(b[i][1]<0 && b[i+1][1]<0))
+       {
+        for (j = 0; j < 3; j++)
          {
 
-
-            a[i+1][j]=((b[i+1][j] * b[1][1]) - (b[i][j] * b[2][1]));
-
+            a[i+1][j]=((b[i+1][j] * b[1][1]) - (b[i][j]*b[2][1]));
+            printf("\nDebug i&j a[%d][%d]= %d",i,j, a[i][j]);
+            debug(a);
+         //   printf(" %d", a[i][j]);
 
         }
 
     }
+       else
+       {
+           for (j = 0; j < 3; j++)
+         {
+
+            a[i+1][j]=((b[i+1][j] * b[1][1]) + (b[i][j]*b[2][1]));
+            printf("\nDebug i&j a[%d][%d]= %d",i,j, a[i][j]);
+            debug(a);
+         //   printf(" %d", a[i][j]);
+
+        }
+       } 
+    }
+    }for (i = 0; i < 3; i++) {
+        for (j = 0; j < 3; j++)
+         {
+            b[i][j]=a[i][j];
+
+        }
     }
 
         if(a[1][0]!=0)
