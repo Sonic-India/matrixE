@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <time.h>
+#include <stdlib.h>
+#include<process.h>
 
 	int steps=0;
 
@@ -130,12 +132,27 @@ void debug(int a[3][3])
     printf("\n Matrix Display End:\n\n");
 }
 
+
+
 int main() {
     int a[3][3];
 
     int b[3][3];
     int i, j,n=0;
+	int choice=0;
+    int no=0,r=0;
 
+start :
+system("cls");
+printf("\n       Main Menu    ");
+printf("\n 1. Echelon ");
+printf("\n 2. Rank");
+printf("\n 3. Determinant");
+printf("\n 4. Exit");
+printf("\n Enter the choice :  ");
+scanf("%d",&choice);
+
+if(choice==1||choice==2){
 for(i=0;i<3;i++){  //Input Matrix
         for(j=0;j<3;j++)
         {
@@ -143,6 +160,8 @@ for(i=0;i<3;i++){  //Input Matrix
             scanf("%d",&a[i][j]);
         }
 }
+
+
 
 
     /* clock_t clock(void) returns the number of clock ticks
@@ -363,7 +382,10 @@ row3:
         }
        }
     }
-    }for (i = 0; i < 3; i++) {
+    }
+
+
+    for (i = 0; i < 3; i++) {
         for (j = 0; j < 3; j++)
          {
             b[i][j]=a[i][j];
@@ -383,6 +405,8 @@ if(a[1][0]==0&&a[1][1]==0&&a[2][0]==0&&a[2][1]!=0)
 r2_r3(a);
 if(a[1][0]==0&&a[1][1]==0&&a[2][0]!=0&&a[2][1]!=0)
 r2_r3(a);
+if(a[1][0]==0&&a[1][1]!=0&&a[1][2]!=0&&a[2][0]!=0&&a[2][1]==0&&a[2][2]!=0)
+    r2_r3(a);
 
         if(a[1][0]!=0)
             goto row2;
@@ -407,6 +431,50 @@ r2_r3(a);
     printf( "\nTime taken by program is : %.5lf sec\n" , time_taken );
  //  cout << " sec " << endl;
 	printf("\n====================================================================\n");
+}
+if(choice==2)
+{
 
+	for (i = 0; i < 3; i++) {
+        no=0;
+        for (j = 0; j < 3; j++)
+         {
+            if(a[i][j]==0)
+            {
+                no++;
+            }
+
+
+
+        }
+		if(no!=3)
+			r++;
+    }
+    printf("\n");
+    printf("\n====================================================================\n");
+	printf("\n The Rank of matrix is %d",r);
+    printf("\n====================================================================\n");
+    printf("\n");
+}
+
+if(choice==3)
+{
+    long int det=0;
+    for(i=0;i<3;i++){  //Input Matrix
+        for(j=0;j<3;j++)
+        {
+            printf("\n Enter the Array a[%d][%d]: ",i,j);
+            scanf("%d",&a[i][j]);
+        }
+}
+
+        det=a[0][0]*( (a[1][1]*a[2][2])-(a[2][1]*a[1][2])) - a[0][1]*((a[1][0]*a[2][2])- (a[2][0]*a[1][2])) + a[0][2]*((a[1][0]*a[2][1])-(a[2][0]*a[1][1]));
+        printf("\n The Determinant is %d ",det);
+
+}
+system("pause");
+goto start;
+if(choice==4)
+    exit(0);
     return 0;
 }

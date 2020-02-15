@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1581220053 source:e:\matrix\matrix\main.c
+	<stdio.h>
+	<time.h>
+	<stdlib.h>
+	<process.h>
+
