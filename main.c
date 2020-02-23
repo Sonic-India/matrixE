@@ -1,480 +1,178 @@
 #include <stdio.h>
+
 #include <time.h>
+
 #include <stdlib.h>
+
+#include<math.h>
+
 #include<process.h>
 
-	int steps=0;
+int steps = 0;
 
-int r1_r2(int a[3][3])
-{
-    printf("\nSwapping Started R1 R2\n");
-    int  temp[3][3];
-    int i,j,x;
-    for (i=0, x=1 ; i<=1 && x>=0; i++,x--)
-	{
+#include"echelon.h"
 
-		for(j=0;j<3;j++)
-		{
-			temp[i][j]=a[x][j];
-		}
-
-	}
-
-	for (i=0;i<=1;i++)
-	{
-		for(j=0;j<3;j++)
-		{
-			a[i][j]=temp[i][j];
-		}
-	}
-
-
-        /* display array contents */
-    for (i = 0; i < 3; i++) {
-        for (j = 0; j < 3; j++) {
-            printf(" %d", a[i][j]);
-        }
-        printf("\n");
-    }
-
-    printf("\nSwapping Ended\n");
-	++steps;
-    return a[3][3];
-
-}
-
-int r1_r3(int a[3][3])
-{
-    printf("\nSwapping Started R1 R3\n");
-    int  temp[3][3];
-    int i,j,x;
-    for (i=0, x=2 ; i<=2 && x>=0; i++ , x--)
-	{
-
-		for(j=0;j<3;j++)
-		{
-			temp[i][j]=a[x][j];
-		}
-		i++;
-		x--;
-
-	}
-
-    for (i=0;i<=2;i++)
-	{
-		for(j=0;j<3;j++)
-		{
-			a[i][j]=temp[i][j];
-		}
-		i++;
-	}
-
-        /* display array contents */
-    for (i = 0; i < 3; i++) {
-        for (j = 0; j < 3; j++) {
-            printf(" %d", a[i][j]);
-        }
-        printf("\n");
-    }
-
-    printf("\nSwapping Ended\n");
-	++steps;
-    return a[3][3];
-}
-
-int r2_r3(int a[3][3])
-{
-    printf("\nSwapping Started R2 R3\n");
-    int  temp[3][3];
-    int i,j,x;
-	for (i=1, x=2 ; i<=2 && x>0; i++,x--)
-	{
-
-		for(j=0;j<3;j++)
-		{
-			temp[i][j]=a[x][j];
-		}
-
-	}
-
-	for (i=1;i<3;i++)
-	{
-		for(j=0;j<3;j++)
-		{
-			a[i][j]=temp[i][j];
-		}
-	}
-
-        /* display array contents */
-    for (i = 0; i < 3; i++) {
-        for (j = 0; j < 3; j++) {
-            printf(" %d", a[i][j]);
-        }
-        printf("\n");
-    }
-
-    printf("\nSwapping Ended \n");
-	++steps;
-    return a[3][3];
-}
-
-
-void debug(int a[3][3])
-{
-    int i,j;
-    printf("\n Matrix Display :\n\n");
-     for (i = 0; i < 3; i++) {
-        for (j = 0; j < 3; j++) {
-            printf(" %d", a[i][j]);
-        }
-        printf("\n");
-    }
-    printf("\n Matrix Display End:\n\n");
-}
-
+#include"echelon.c"
 
 
 int main() {
-    int a[3][3];
+  int a[3][3];
 
-    int b[3][3];
-    int i, j,n=0;
-	int choice=0;
-    int no=0,r=0;
-
-start :
-system("cls");
-printf("\n       Main Menu    ");
-printf("\n 1. Echelon ");
-printf("\n 2. Rank");
-printf("\n 3. Determinant");
-printf("\n 4. Exit");
-printf("\n Enter the choice :  ");
-scanf("%d",&choice);
-
-if(choice==1||choice==2){
-for(i=0;i<3;i++){  //Input Matrix
-        for(j=0;j<3;j++)
-        {
-            printf("\n Enter the Array a[%d][%d]: ",i,j);
-            scanf("%d",&a[i][j]);
-        }
-}
-
-
-
-
-    /* clock_t clock(void) returns the number of clock ticks
-       elapsed since the program was launched.To get the number
-       of seconds used by the CPU, you will need to divide by
-       CLOCKS_PER_SEC.where CLOCKS_PER_SEC is 1000000 on typical
-       32 bit system.  */
-    clock_t start, end;
-    /* Recording the starting clock tick.*/
-    start = clock();
-
-for (i = 0; i < 3; i++) {
-        for (j = 0; j < 3; j++)
-         {
-            b[i][j]=a[i][j];
-
-        }
-
+  int i, j, n = 0;
+  int choice = 0;
+  int no = 0, r = 0;
+  start:
+    system("cls");
+  printf("\n       Main Menu    ");
+  printf("\n 1. Echelon ");
+  printf("\n 2. Rank");
+  printf("\n 3. Determinant");
+  printf("\n 4. Eigen Values");
+  printf("\n 5. Exit");
+  printf("\n Enter the choice :  ");
+  scanf("%d", & choice);
+  if (choice == 1 || choice == 2) {
+    for (i = 0; i < 3; i++) { //Input Matrix
+      for (j = 0; j < 3; j++) {
+        printf("\n Enter the Array a[%d][%d]: ", i, j);
+        scanf("%d", & a[i][j]);
+      }
     }
-
-
-
-
-    /* display array contents */
+    echelon(a);
+  }
+  if (choice == 2) {
     for (i = 0; i < 3; i++) {
-        for (j = 0; j < 3; j++) {
-            printf(" %d", a[i][j]);
+      no = 0;
+      for (j = 0; j < 3; j++) {
+        if (a[i][j] == 0) {
+          no++;
         }
-        printf("\n");
-    }
-
-for (i=0 ;i<3;i++){
-    if (a[0][0]==0)
-        {
-           if(a[1][0]!=0)
-                r1_r2(a);
-           else if(a[2][0]!=0)
-                r1_r3(a);
-         }
-
-
-    if(a[1][0]==0&&a[1][1]==0&&a[2][0]==0&&a[2][1]!=0)
-        r2_r3(a);
-
-    if(a[1][0]==0&&a[1][1]==0&&a[2][0]!=0&&a[2][1]!=0)
-        r2_r3(a);
-}
-
-
-for (i = 0; i < 3; i++) {
-        for (j = 0; j < 3; j++)
-         {
-            b[i][j]=a[i][j];
-
-        }
-
-    }
-
-
-row2:
-    for (i = 0; i < 3; i++) {
-        for (j = 0; j < 3; j++)
-         {
-            b[i][j]=a[i][j];
-
-        }
-
-    }
-
-    if(a[1][0]!=0)
-    {
-   for (i = 0; i < 1; i++)
-      {
-       if((b[i][0]>0 && b[i+1][0]>0)||(b[i][0]<0 && b[i+1][0]<0))
-       {
-        for (j = 0; j < 3; j++)
-         {
-
-            a[i+1][j]=((b[i+1][j] * b[0][0]) - (b[0][j]*b[i+1][0]));
-			++steps;
-            printf("\n Step : a[%d][%d]= %d",i,j, a[i][j]);
-            debug(a);
-         //   printf(" %d", a[i][j]);
-
-        }
-
-    }
-       else
-       {
-           for (j = 0; j < 3; j++)
-         {
-
-            a[i+1][j]=((b[i+1][j] * b[0][0]) + (b[0][j]*b[i+1][0]));
-			++steps;
-            printf("\n Step : a[%d][%d]= %d",i,j, a[i][j]);
-            debug(a);
-         //   printf(" %d", a[i][j]);
-         }
-       }
-     }
-    } for (i = 0; i < 3; i++) {
-        for (j = 0; j < 3; j++)
-         {
-            b[i][j]=a[i][j];
-
-        }
-
-    }
-
-    if (a[0][0]==0){
-           if(a[1][0]!=0)
-                r1_r2(a);
-           else if(a[2][0]!=0)
-                r1_r3(a);
-}
-
-
-if(a[1][0]==0&&a[1][1]==0&&a[2][0]==0&&a[2][1]!=0)
-r2_r3(a);
-if(a[1][0]==0&&a[1][1]==0&&a[2][0]!=0&&a[2][1]!=0)
-r2_r3(a);
-
-
-    if(a[2][0]!=0)
-    {
-   for (i = 0; i < 1; i++)
-      {
-       if((b[i][0]>0 && b[i+2][0]>0)||(b[i][0]<0 && b[i+2][0]<0))
-       {
-        for (j = 0; j < 3; j++)
-         {
-
-            a[i+2][j]=((b[i+2][j] * b[0][0]) - (b[0][j]*b[i+2][0]));
-			++steps;
-            printf("\n Step :  a[%d][%d]= %d",i,j, a[i][j]);
-            debug(a);
-         //   printf(" %d", a[i][j]);
-
-        }
-
-    }
-       else
-       {
-           for (j = 0; j < 3; j++)
-         {
-
-            a[i+2][j]=((b[i+2][j] * b[0][0]) + (b[0][j]*b[i+2][0]));
-			++steps;
-            printf("\n Step :  a[%d][%d]= %d",i,j, a[i][j]);
-            debug(a);
-         //   printf(" %d", a[i][j]);
-
-        }
-       }
-     }
-    } for (i = 0; i < 3; i++) {
-        for (j = 0; j < 3; j++)
-         {
-            b[i][j]=a[i][j];
-
-        }
-    }
-
-    if (a[0][0]==0){
-           if(a[1][0]!=0)
-                r1_r2(a);
-           else if(a[2][0]!=0)
-                r1_r3(a);
-}
-
-
-if(a[1][0]==0&&a[1][1]==0&&a[2][0]==0&&a[2][1]!=0)
-r2_r3(a);
-if(a[1][0]==0&&a[1][1]==0&&a[2][0]!=0&&a[2][1]!=0)
-r2_r3(a);
-
-
-row3:
-
-
-    for (i = 0; i < 3; i++) {
-        for (j = 0; j < 3; j++)
-         {
-            b[i][j]=a[i][j];
-
-        }
-    }
-
-    if(a[2][1]!=0)
-    {
-    for (i = 1; i < 2; i++)
-      {
-       if((b[i][1]>0 && b[i+1][1]>0)||(b[i][1]<0 && b[i+1][1]<0))
-       {
-        for (j = 0; j < 3; j++)
-         {
-
-            a[i+1][j]=((b[i+1][j] * b[1][1]) - (b[i][j]*b[2][1]));
-			++steps;
-            printf("\n Step :  a[%d][%d]= %d",i,j, a[i][j]);
-            debug(a);
-         //   printf(" %d", a[i][j]);
-
-        }
-
-    }
-       else
-       {
-           for (j = 0; j < 3; j++)
-         {
-
-            a[i+1][j]=((b[i+1][j] * b[1][1]) + (b[i][j]*b[2][1]));
-			++steps;
-            printf("\n Step :  a[%d][%d]= %d",i,j, a[i][j]);
-            debug(a);
-         //   printf(" %d", a[i][j]);
-
-        }
-       }
-    }
-    }
-
-
-    for (i = 0; i < 3; i++) {
-        for (j = 0; j < 3; j++)
-         {
-            b[i][j]=a[i][j];
-
-        }
-    }
-
-    if (a[0][0]==0){
-           if(a[1][0]!=0)
-                r1_r2(a);
-           else if(a[2][0]!=0)
-                r1_r3(a);
-}
-
-
-if(a[1][0]==0&&a[1][1]==0&&a[2][0]==0&&a[2][1]!=0)
-r2_r3(a);
-if(a[1][0]==0&&a[1][1]==0&&a[2][0]!=0&&a[2][1]!=0)
-r2_r3(a);
-if(a[1][0]==0&&a[1][1]!=0&&a[1][2]!=0&&a[2][0]!=0&&a[2][1]==0&&a[2][2]!=0)
-    r2_r3(a);
-
-        if(a[1][0]!=0)
-            goto row2;
-        if(a[2][0]||a[2][1])
-            goto row3;
-
-
-   printf("\n============================Final Matrix============================\n");
-   printf("\n");
-   for (i = 0; i < 3; i++) {
-        for (j = 0; j < 3; j++) {
-            printf(" %d", a[i][j]);
-        }
-        printf("\n");
-    }
-	printf("\n\n Steps taken for Completing this Problem : %d\n\n ",steps);
-	// Recording the end clock tick.
-    end = clock();
-
-    // Calculating total time taken by the program.
-    double time_taken =(double)(end - start) / (CLOCKS_PER_SEC);
-    printf( "\nTime taken by program is : %.5lf sec\n" , time_taken );
- //  cout << " sec " << endl;
-	printf("\n====================================================================\n");
-}
-if(choice==2)
-{
-
-	for (i = 0; i < 3; i++) {
-        no=0;
-        for (j = 0; j < 3; j++)
-         {
-            if(a[i][j]==0)
-            {
-                no++;
-            }
-
-
-
-        }
-		if(no!=3)
-			r++;
+      }
+      if (no != 3)
+        r++;
     }
     printf("\n");
     printf("\n====================================================================\n");
-	printf("\n The Rank of matrix is %d",r);
+    printf("\n The Rank of matrix is %d", r);
     printf("\n====================================================================\n");
     printf("\n");
-}
+  }
+  if (choice == 3) {
+    long int det = 0;
+    for (i = 0; i < 3; i++) { //Input Matrix
+      for (j = 0; j < 3; j++) {
+        printf("\n Enter the Array a[%d][%d]: ", i, j);
+        scanf("%d", & a[i][j]);
+      }
+    }
 
-if(choice==3)
-{
-    long int det=0;
-    for(i=0;i<3;i++){  //Input Matrix
-        for(j=0;j<3;j++)
-        {
-            printf("\n Enter the Array a[%d][%d]: ",i,j);
-            scanf("%d",&a[i][j]);
-        }
-}
+    det = a[0][0] * ((a[1][1] * a[2][2]) - (a[2][1] * a[1][2])) - a[0][1] * ((a[1][0] * a[2][2]) - (a[2][0] * a[1][2])) + a[0][2] * ((a[1][0] * a[2][1]) - (a[2][0] * a[1][1]));
+    printf("\n The Determinant is %d ", det);
 
-        det=a[0][0]*( (a[1][1]*a[2][2])-(a[2][1]*a[1][2])) - a[0][1]*((a[1][0]*a[2][2])- (a[2][0]*a[1][2])) + a[0][2]*((a[1][0]*a[2][1])-(a[2][0]*a[1][1]));
-        printf("\n The Determinant is %d ",det);
+  }
+  if (choice == 4) {
+    double det = 0;
+    double b1, c1, d1, e1, f1, g1, h1, i1, j1, k1, l1, m1, n1, p1, r1, s1, t1, u1, o;
+    double x1, x2, x3, a1 = 1;
+    int w1;
+    for (i = 0; i < 3; i++) { //Input Matrix
+      for (j = 0; j < 3; j++) {
+        printf("\n Enter the Array a[%d][%d]: ", i, j);
 
-}
-system("pause");
-goto start;
-if(choice==4)
+        scanf("%d", & a[i][j]);
+      }
+    }
+
+    b1 = (-1) * (a[0][0] + a[1][1] + a[2][2]);
+
+    c1 = ((a[1][1] * a[2][2]) - (a[2][1] * a[1][2])) + ((a[0][0] * a[2][2]) - (a[2][0] * a[0][2])) + ((a[0][0] * a[1][1]) - (a[1][0] * a[0][1]));
+
+    det = a[0][0] * ((a[1][1] * a[2][2]) - (a[2][1] * a[1][2])) - a[0][1] * ((a[1][0] * a[2][2]) - (a[2][0] * a[1][2])) + a[0][2] * ((a[1][0] * a[2][1]) - (a[2][0] * a[1][1]));
+
+    printf("\n The Determinant is %d ", det);
+
+    d1 = (-1) * det;
+
+    printf("b=%lf c=%lf d=%lf", b1, c1, d1);
+
+    e1 = 2.7182818284590;
+
+    f1 = ((3 * c1 / a1) - (b1 * b1 / (a1 * a1))) / 3; // ** bracketed (a*a)!
+
+    g1 = ((2 * b1 * b1 * b1 / (a1 * a1 * a1)) - (9 * b1 * c1 / (a1 * a1)) + (27 * d1 / a1)) / 27; // ** brackets!
+
+    h1 = (g1 * g1 / 4) + (f1 * f1 * f1 / 27);
+
+    i1 = sqrt(((g1 * g1 / 4) - h1));
+
+    j1 = exp(log10(i1) / log10(e1) / 3);
+
+    k1 = acos((-1) * (g1 / (2 * i1)));
+
+    l1 = j1 * (-1);
+
+    m1 = cos(k1 / 3);
+
+    n1 = sqrt(3) * sin(k1 / 3);
+
+    p1 = (b1 / 3 * a1) * (-1);
+
+    r1 = (-1) * (g1 / 2) + sqrt(h1);
+
+    s1 = exp(log10(r1) / log10(e1) / 3);
+
+    t1 = (-1) * (g1 / 2) - sqrt(h1);
+
+    u1 = exp(log10(t1) / log10(e1) / 3);
+
+    if (h1 > 0) w1 = 1;
+
+    if (h1 <= 0) w1 = 3;
+
+    if ((f1 == 0) && (g1 == 0) && (h1 == 0)) w1 = 2;
+
+    switch (w1) {
+
+    case 1:
+
+      x1 = (s1 + u1) - (b1 / 3 * a1);
+
+      x2 = (-1) * (s1 + u1) / 2 - (b1 / 3 * a1);
+
+      x3 = (s1 - u1) * sqrt(3) / 2;
+
+      printf("\n Eigen Values : %lf,%lf,%lf", x1, x2, x3);
+
+      break;
+
+    case 2:
+
+      x1 = exp(log10(d1 / a1) / log10(e1) / 3) * (-1);
+
+      printf("\n Eigen values : %lf", x1);
+
+      break;
+
+    case 3:
+
+      x1 = 2 * j1 * cos(k1 / 3) - (b1 / 3 * a1);
+
+      x2 = l1 * (m1 + n1) + p1;
+
+      x3 = l1 * (m1 - n1) + p1;
+
+      printf("\nEigen Values : %lf,%lf,%lf \n", x1, x2, x3);
+
+      break;
+    }
+  }
+
+  system("pause");
+
+  if (choice == 5)
+
     exit(0);
-    return 0;
+
+  return 0;
+
 }
