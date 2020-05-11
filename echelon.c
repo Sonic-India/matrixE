@@ -1,62 +1,4 @@
-#include <stdio.h>
 
-#include <time.h>
-
-#include <stdlib.h>
-
-#include<math.h>
-
-#include<process.h>
-
-#include"echelon.h"
-
-int echelon(int a[3][3]) {
-  int b[3][3];
-  int i, j, n = 0;
-
-  /* clock_t clock(void) returns the number of clock ticks
-     elapsed since the program was launched.To get the number
-     of seconds used by the CPU, you will need to divide by
-     CLOCKS_PER_SEC.where CLOCKS_PER_SEC is 1000000 on typical
-     32 bit system.  */
-  clock_t start, end;
-  /* Recording the starting clock tick.*/
-  start = clock();
-  for (i = 0; i < 3; i++) {
-    for (j = 0; j < 3; j++) {
-      b[i][j] = a[i][j];
-    }
-  }
-  /* display array contents */
-  for (i = 0; i < 3; i++) {
-    for (j = 0; j < 3; j++) {
-      printf(" %d", a[i][j]);
-    }
-    printf("\n");
-  }
-  for (i = 0; i < 3; i++) {
-    if (a[0][0] == 0) {
-      if (a[1][0] != 0)
-        r1_r2(a);
-      else if (a[2][0] != 0)
-        r1_r3(a);
-    }
-    if (a[1][0] == 0 && a[1][1] == 0 && a[2][0] == 0 && a[2][1] != 0)
-      r2_r3(a);
-    if (a[1][0] == 0 && a[1][1] == 0 && a[2][0] != 0 && a[2][1] != 0)
-      r2_r3(a);
-  }
-  for (i = 0; i < 3; i++) {
-    for (j = 0; j < 3; j++) {
-      b[i][j] = a[i][j];
-    }
-  }
-  row2:
-    for (i = 0; i < 3; i++) {
-      for (j = 0; j < 3; j++) {
-        b[i][j] = a[i][j];
-      }
-    }
   if (a[1][0] != 0) {
     for (i = 0; i < 1; i++) {
       if ((b[i][0] > 0 && b[i + 1][0] > 0) || (b[i][0] < 0 && b[i + 1][0] < 0)) {
@@ -75,24 +17,6 @@ int echelon(int a[3][3]) {
           debug(a);
           //   printf(" %d", a[i][j]);
         }
-      }
-    }
-  }
-  for (i = 0; i < 3; i++) {
-    for (j = 0; j < 3; j++) {
-      b[i][j] = a[i][j];
-    }
-  }
-  if (a[0][0] == 0) {
-    if (a[1][0] != 0)
-      r1_r2(a);
-    else if (a[2][0] != 0)
-      r1_r3(a);
-  }
-  if (a[1][0] == 0 && a[1][1] == 0 && a[2][0] == 0 && a[2][1] != 0)
-    r2_r3(a);
-  if (a[1][0] == 0 && a[1][1] == 0 && a[2][0] != 0 && a[2][1] != 0)
-    r2_r3(a);
   if (a[2][0] != 0) {
     for (i = 0; i < 1; i++) {
       if ((b[i][0] > 0 && b[i + 2][0] > 0) || (b[i][0] < 0 && b[i + 2][0] < 0)) {
@@ -111,20 +35,6 @@ int echelon(int a[3][3]) {
           debug(a);
           //   printf(" %d", a[i][j]);
         }
-      }
-    }
-  }
-  for (i = 0; i < 3; i++) {
-    for (j = 0; j < 3; j++) {
-      b[i][j] = a[i][j];
-    }
-  }
-  if (a[0][0] == 0) {
-    if (a[1][0] != 0)
-      r1_r2(a);
-    else if (a[2][0] != 0)
-      r1_r3(a);
-  }
   if (a[1][0] == 0 && a[1][1] == 0 && a[2][0] == 0 && a[2][1] != 0)
     r2_r3(a);
   if (a[1][0] == 0 && a[1][1] == 0 && a[2][0] != 0 && a[2][1] != 0)
