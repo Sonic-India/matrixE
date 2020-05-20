@@ -1,0 +1,84 @@
+#include <stdio.h>
+int main()
+{
+    float a[3][3],b[3][3]; int m,n,i,j,r,k,c,d; float y,z;int x;
+    printf("\n Enter no. of rows and columns :");
+    scanf("%d %d",&m,&n);
+    for(i=0;i<m;i++)
+    {
+        for(j=0;j<n;j++)
+        {
+            printf("\n Enter matrix element [%d][%d]  :",i,j);
+            scanf("%f",&a[i][j]);
+            b[i][j]=a[i][j];
+        }
+    }
+    printf("\n******Input Matrix******\n\n");
+    for(i=0;i<m;i++)
+    {
+        for(j=0;j<n;j++)
+        {
+         x=(int)b[i][j];
+         y=b[i][j];z=b[i][j];y=y-x;
+         if(y==0)
+            printf("       %d",x);
+         else
+            printf("       %f",z);
+        }
+        printf("\n");
+    }
+    printf("\n\n");
+    for(c=0;c<(m-1);c++)
+   {
+       for(d=0;d<(n-c-1);d++)
+       {
+           for(i=d;i<(d+1);i++)
+           {
+               if(a[c+d+1][c]!=0)
+               {
+                   for(j=0;j<n;j++)
+                 {
+                   a[c+d+1][j]=(b[c+d+1][j])    -    ((b[c+d+1][c]/b[c][c])*b[c][j]);
+                 }
+               }
+           }
+            for(r=0;r<m;r++)
+            {
+              for(k=0;k<n;k++)
+              {
+                 b[r][k]=a[r][k];
+              }
+            }
+            for(i=0;i<m;i++)
+            {
+                for(j=0;j<n;j++)
+                {
+         x=(int)b[i][j];
+         y=b[i][j];z=b[i][j];y=y-x;
+         if(y==0)
+            printf("       %d",x);
+         else
+            printf("       %f",z);
+                }
+                  printf("\n");
+            }
+             printf("\n\n");
+       }
+   }
+   printf("*****Echelon Form*****\n");
+   for(i=0;i<m;i++)
+    {
+        for(j=0;j<n;j++)
+        {x=(int)b[i][j];
+         y=b[i][j];z=b[i][j];y=y-x;
+         if(y==0)
+            printf("       %d",x);
+         else
+            printf("       %f",z);
+                }
+                  printf("\n");
+        }
+        printf("\n");
+     }
+
+
