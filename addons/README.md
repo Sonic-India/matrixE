@@ -2,7 +2,7 @@
 
 1.The Fraction Addon is now available;
 
-  Its syntax is
+  The syntax is :
 
     frac(float);  
     eg: frac(1.5);
