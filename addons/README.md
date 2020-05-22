@@ -7,4 +7,5 @@
   eg : frac(1.5);
   
   eg : float a=1.5;
+  
        frac(a);
