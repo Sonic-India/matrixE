@@ -4,8 +4,6 @@
 
   Its syntax is frac(float);
   
-  eg : frac(1.5);
-  
-  eg : float a=1.5;
-  
-       frac(a);
+    frac(1.5);
+    float a=1.5;
+    frac(a);
