@@ -6,7 +6,7 @@ float **CreateMatrix(int rows, int cols)
   int i;
   for (i = 0; i < rows; i++)
     {
-    matrix[i] = malloc(sizeof(float) * cols);
+       matrix[i] = malloc(sizeof(float) * cols);
     }
   return matrix;
 }
@@ -25,7 +25,7 @@ void MatrixInput(int **matrix, int rows, int cols)
 int main()
  {
   float **a;float **b;
-  int m,n,i,j,r,k,c,d; float y,z;int x;float temp;
+  int m,n,i,j,r,k,c,d,x; float y,z,temp;
   printf("\n Enter number of Rows : ");
   scanf("%d", &m);
   printf("\n Enter number of Columns : ");
@@ -72,23 +72,23 @@ int main()
               }
               else
                  continue;
-            break;
+              break;
           }
       }
-                  for(r=0;r<m;r++)
+      for(r=0;r<m;r++)
             {
               for(k=0;k<n;k++)
               {
-                 a[r][k]=b[r][k];
+                  a[r][k]=b[r][k];
               }
             }
-       for(d=0;d<(m-c-1);d++)
-       {
+           for(d=0;d<(m-c-1);d++)
+           {
                if(a[c+d+1][c]!=0)
                {
                   for(j=0;j<n;j++)
                  {
-                   a[c+d+1][j]=(b[c+d+1][j])    -    ((b[c+d+1][c]/b[c][c])*b[c][j]);
+                   a[c+d+1][j]=  (b[c+d+1][j])   -  ((b[c+d+1][c]/b[c][c]) * b[c][j]);
                  }
                }
             for(r=0;r<m;r++)
@@ -102,8 +102,8 @@ int main()
             {
                 for(j=0;j<n;j++)
                 {
-         x=(int)b[i][j];
-         y=b[i][j];z=b[i][j];y=y-x;
+                    x=(int)b[i][j];
+                    y=b[i][j];z=b[i][j];y=y-x;
          if(y==0)
             printf("       %d",x);
          else
