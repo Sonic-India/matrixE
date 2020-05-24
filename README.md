@@ -1,2 +1,2 @@
 # matrixE
-This is Official Project to Convert 3x3 Matrix to Echelon Form
+This is Official Project to Convert a Matrix to Echelon Form
