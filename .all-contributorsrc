@@ -1,0 +1,25 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "aashritamutki",
+      "name": "Aashrita Mutkiri ",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/56816847?v=4",
+      "profile": "https://github.com/aashritamutki",
+      "contributions": [
+        "test",
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "matrixE",
+  "projectOwner": "Sonic-India",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
